@@ -21,6 +21,9 @@ class MainActivity : AppCompatActivity() {
         // `R.layout.activity_main` 같은 효과, `activity_main`을 참고
         setContentView(binding.root)
 
+        // 액티비티를 시작하면 저장된 값 불러오기, `data/data/패키지명/shared_prefs`에 있음
+        loadData()
+
         // `ResultActivity`로 이동
         binding.resultButton.setOnClickListener {
             // 결과 버튼이 클릭되면 할 일
@@ -46,8 +49,19 @@ class MainActivity : AppCompatActivity() {
         val preference = PreferenceManager.getDefaultSharedPreferences(this)
         // 프리퍼런스 객체의 에디터 얻기
         val editor = preference.edit()
-
+        // 인수로 전달받은 height, weight 반영
         editor.putFloat("KEY_HEIGHT", height).putFloat("KEY_WEIGHT", weight).apply()
     }
-}
 
+    // 저장된 값을 불러오는 함수
+    private fun loadData() {
+        val preference = PreferenceManager.getDefaultSharedPreferences(this)
+        val height = preference.getFloat("KEY_HEIGHT", 0f)
+        val weight = preference.getFloat("KEY_WEIGHT", 0f)
+
+        if (height != 0f && weight != 0f) {
+            binding.heightEditText.setText(height.toString())
+            binding.weightEditText.setText(weight.toString())
+        }
+    }
+}
