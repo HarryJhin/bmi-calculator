@@ -43,7 +43,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 데이터를 저장하는 함수
+    /**
+     * `SharedPreference`에 데이터(height, weight)를 저장하는 함수
+     */
     private fun saveData(height: Float, weight: Float) {
         // 프리퍼런스 객체 얻기
         val preference = PreferenceManager.getDefaultSharedPreferences(this)
@@ -53,7 +55,9 @@ class MainActivity : AppCompatActivity() {
         editor.putFloat("KEY_HEIGHT", height).putFloat("KEY_WEIGHT", weight).apply()
     }
 
-    // 저장된 값을 불러오는 함수
+    /**
+     * `SharedPreference`에 저장된 데이터(height, weight)를 가져와 뷰의 텍스트를 변경하는 함수
+     */
     private fun loadData() {
         val preference = PreferenceManager.getDefaultSharedPreferences(this)
         val height = preference.getFloat("KEY_HEIGHT", 0f)
