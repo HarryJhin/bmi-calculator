@@ -1,5 +1,6 @@
 package blog.jinhyun.bmicalculator
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import blog.jinhyun.bmicalculator.databinding.ActivityMainBinding
@@ -16,7 +17,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // `R.layout.activity_main` 같은 효과
+        // `R.layout.activity_main` 같은 효과, `activity_main`을 참고
         setContentView(binding.root)
+
+        // `ResultActivity`로 이동
+        binding.resultButton.setOnClickListener {
+            // 결과 버튼이 클릭되면 할 일
+            val intent = Intent(this, ResultActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
