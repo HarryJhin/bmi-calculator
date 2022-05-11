@@ -2,6 +2,7 @@ package blog.jinhyun.bmicalculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import blog.jinhyun.bmicalculator.databinding.ActivityResultBinding
 import kotlin.math.pow
 
@@ -37,5 +38,8 @@ class ResultActivity : AppCompatActivity() {
             bmi >= 18.5 -> binding.imageView.setImageResource(R.drawable.ic_baseline_sentiment_satisfied_alt_24)
             else -> binding.imageView.setImageResource(R.drawable.ic_baseline_sentiment_dissatisfied_24)
         }
+        
+        // 토스트 메시지 출력
+        Toast.makeText(this, "$bmi", Toast.LENGTH_SHORT).show()
     }
 }
