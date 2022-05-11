@@ -23,8 +23,13 @@ class MainActivity : AppCompatActivity() {
         // `ResultActivity`로 이동
         binding.resultButton.setOnClickListener {
             // 결과 버튼이 클릭되면 할 일
-            val intent = Intent(this, ResultActivity::class.java)
-            startActivity(intent)
+            if (binding.weightEditText.text.isNotBlank() && binding.heightEditText.text.isNotBlank()) {
+                val intent = Intent(this, ResultActivity::class.java).apply {
+                    putExtra("weight", binding.weightEditText.text.toString().toFloat())
+                    putExtra("height", binding.heightEditText.text.toString().toFloat())
+                }
+                startActivity(intent)
+            }
         }
     }
 }
